@@ -11,7 +11,8 @@ gulp.task('build', function(){
     return browserify({entries: './app.jsx', extensions: ['.jsx'], debug: true})
         // apply babelify transform to our code
         // this allows us to convert code written in ECMAScript6 to ECMAScript5
-        .transform('babelify', {presets: ['es2015', 'react']})
+        // using stage-0 to covert code written in ECMAScript7 to ECMAScript5
+        .transform('babelify', {presets: ['react', 'es2015', 'stage-0']})
         .bundle()
         .pipe(source('bundle.js')) // output the result to dist/bunble.js
         .pipe(gulp.dest('dist'));
